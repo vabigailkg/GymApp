@@ -1,4 +1,4 @@
-package model;
+package model.gestores;
 
 public class GestorWorkouts {
 
