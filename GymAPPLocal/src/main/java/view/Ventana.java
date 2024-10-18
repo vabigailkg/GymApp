@@ -46,18 +46,22 @@ public class Ventana extends JFrame {
 		// Instanciar clases JPanel
 		PanelLogin panelLogin = new PanelLogin(this);
 		PanelRegistro panelRegistro = new PanelRegistro(this);
+		PanelPerfil panelPerfil = new PanelPerfil(this);
 
 		// Aplicar parámetros a paneles
 		JPanel pLogin = panelLogin.getJPanel(PANEL_X, PANEL_Y, PANEL_ANCHO, PANEL_ALTO, "panelLogin");
 		JPanel pRegistro = panelRegistro.getJPanel(PANEL_X, PANEL_Y, PANEL_ANCHO, PANEL_ALTO, "panelRegistro");
-
+		JPanel pPerfil = panelPerfil.getJPanel(PANEL_X, PANEL_Y, PANEL_ANCHO, PANEL_ALTO, "panelPerfil");
+		
 		// Agregar paneles al frame
 		ventana.getContentPane().add(pLogin);
 		ventana.getContentPane().add(pRegistro);
+		ventana.getContentPane().add(pPerfil);
 		
 		// Visibilidad por defecto
 		pLogin.setVisible(true);
 		pRegistro.setVisible(false);
+		pPerfil.setVisible(false);
 		ventana.setVisible(true);
 	}
 
