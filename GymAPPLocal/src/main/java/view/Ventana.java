@@ -1,38 +1,79 @@
 package view;
 
-import java.awt.EventQueue;
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
+/**
+ * Clase JFrame que cambia de panel a mostrar.
+ */
 public class Ventana extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	public JFrame ventana = null;
 
-	// Arranca la app
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ventana frame = new Ventana();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	// MEDIDAS FRAME + PANELES
+	private static final int FRAME_X = 100;
+	private static final int FRAME_Y = 100;
+	private static final int FRAME_ANCHO = 640;
+	private static final int FRAME_ALTO = 480;
+	private static final int PANEL_X = 0;
+	private static final int PANEL_Y = 0;
+	private static final int PANEL_ANCHO = 640;
+	private static final int PANEL_ALTO = 480;
+
+	/**
+	 * Constructor que instancia la ventana.
+	 */
+	public Ventana() {
+		ventana = new JFrame();
 	}
 
-	// 
-	public Ventana() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	public void iniciar() {
+		// Parámetros frame
+		ventana.setBounds(FRAME_X, FRAME_Y, FRAME_ANCHO, FRAME_ALTO);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.getContentPane().setLayout(null);
 
-		setContentPane(contentPane);
+		// Instanciar clases JPanel
+		PanelLogin panelLogin = new PanelLogin(this);
+
+		// Aplicar parámetros a paneles
+		JPanel pLogin = panelLogin.getJPanel(PANEL_X, PANEL_Y, PANEL_ANCHO, PANEL_ALTO, "panelLogin");
+
+		// Agregar paneles al frame
+		ventana.getContentPane().add(pLogin);
+
+		// Visibilidad por defecto
+		pLogin.setVisible(true);
+		
+		ventana.setVisible(true);
+	}
+
+	/**
+	 * Muestra el panel que le pasamos por nombre y oculta el resto.
+	 * 
+	 * @param nombrePanel Panel a mostrar.
+	 */
+	public void mostrarPanel(String nombrePanel) {
+		// Saca todos los componentes de JFrame
+		Component[] listaComponentes = ventana.getContentPane().getComponents();
+		List<Component> componentes = Arrays.asList(listaComponentes);
+
+		for (Component component : componentes) {
+
+			// Ignora todo menos los JPanel
+			if (component instanceof JPanel) {
+				if ((null != component.getName()) && (component.getName().equals(nombrePanel))) {
+					component.setVisible(true);
+				} else {
+					component.setVisible(false);
+				}
+			}
+		}
 	}
 
 }
