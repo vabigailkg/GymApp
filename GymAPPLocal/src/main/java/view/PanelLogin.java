@@ -46,6 +46,8 @@ public class PanelLogin extends JPanel {
 		JButton btnRegistro = new JButton("Nuevo usuario");
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				ventana.mostrarPanel("panelRegistro");
 			}
 		});
 		btnRegistro.setBounds(328, 307, 117, 23);

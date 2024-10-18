@@ -29,9 +29,14 @@ public class Ventana extends JFrame {
 	 * Constructor que instancia la ventana.
 	 */
 	public Ventana() {
+		//setTitle("GymApp - Aplicación de escritorio"); ??????????????? no se ve
 		ventana = new JFrame();
 	}
 
+	/**
+	 * Método que aplica parámetros a paneles + frame y configura la visibilidad por
+	 * defecto.
+	 */
 	public void iniciar() {
 		// Parámetros frame
 		ventana.setBounds(FRAME_X, FRAME_Y, FRAME_ANCHO, FRAME_ALTO);
@@ -40,16 +45,19 @@ public class Ventana extends JFrame {
 
 		// Instanciar clases JPanel
 		PanelLogin panelLogin = new PanelLogin(this);
+		PanelRegistro panelRegistro = new PanelRegistro(this);
 
 		// Aplicar parámetros a paneles
 		JPanel pLogin = panelLogin.getJPanel(PANEL_X, PANEL_Y, PANEL_ANCHO, PANEL_ALTO, "panelLogin");
+		JPanel pRegistro = panelRegistro.getJPanel(PANEL_X, PANEL_Y, PANEL_ANCHO, PANEL_ALTO, "panelRegistro");
 
 		// Agregar paneles al frame
 		ventana.getContentPane().add(pLogin);
-
+		ventana.getContentPane().add(pRegistro);
+		
 		// Visibilidad por defecto
 		pLogin.setVisible(true);
-		
+		pRegistro.setVisible(false);
 		ventana.setVisible(true);
 	}
 
